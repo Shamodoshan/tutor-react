@@ -31,7 +31,7 @@ export const Home = ({ title }: HomeProps) => {
           <p className="text-lg text-slate-500 leading-relaxed">
             Professional private instruction for high-achieving students. 
             Structured lessons, comprehensive resources, and localized 
-            learning centers designed for academic excellence.
+            learning centers designed for academic excellence. c
           </p>
           <div className="flex flex-col sm:flex-row gap-4 pt-4">
             <Button size="lg" className="rounded-full shadow-lg shadow-blue-200" asChild>
