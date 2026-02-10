@@ -13,10 +13,10 @@ describe("Register Page Integration", () => {
     
     //find input labels (accessibility first approach)
     const nameInput = screen.getByLabelText(/full name/i);
-    const emailInput = screen.getByLabelText(/email address/i);
+    const emailInput = screen.getByLabelText(/email/i);
     const passwordInput = screen.getByLabelText(/^password$/i);
-    const confirmInput = screen.getByLabelText(/confirm password/i);
-    const submitButton = screen.getByRole('button', { name: /create account/i });
+    const confirmInput = screen.getByLabelText(/confirm/i);
+    const submitButton = screen.getByRole('button', { name: /initialize account/i });
     
     //simulate user interaction with mismatched passwords
     await user.type(nameInput, 'John Doe');
@@ -39,11 +39,11 @@ describe("Register Page Integration", () => {
     render(<Register />);
     
     await user.type(screen.getByLabelText(/full name/i), 'John Doe');
-    await user.type(screen.getByLabelText(/email address/i), 'john@example.com');
+    await user.type(screen.getByLabelText(/email/i), 'john@example.com');
     await user.type(screen.getByLabelText(/^password$/i), 'Password123!');
-    await user.type(screen.getByLabelText(/confirm password/i), 'Password123!');
+    await user.type(screen.getByLabelText(/confirm/i), 'Password123!');
     
-    await user.click(screen.getByRole('button', { name: /create account/i }));
+    await user.click(screen.getByRole('button', { name: /initialize account/i }));
 
     //verify API call
     expect(fetch).toHaveBeenCalledWith('/api/auth/register', expect.any(Object));

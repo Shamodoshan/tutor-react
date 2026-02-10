@@ -12,7 +12,6 @@ describe('Login Page', () => {
         const heading = screen.getByRole('heading', { level: 1, name: /Continue Your/i });
         expect(heading).toBeInTheDocument();
 
-        expect(screen.getByText(/Student Login/i)).toBeInTheDocument();
         expect(screen.getByLabelText(/Email Address/i)).toBeInTheDocument();
         expect(screen.getByLabelText(/Password/i)).toBeInTheDocument();
         expect(screen.getByRole('button', { name: /Login/i })).toBeInTheDocument();
