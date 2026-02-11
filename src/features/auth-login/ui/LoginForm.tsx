@@ -1,27 +1,28 @@
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { loginSchema, type LoginFormData } from "../model/schema";
+import { loginSchema, type LoginSchema } from "../model/schema";
 import { Input } from "@/shared/ui/input";
 import { Button } from "@/shared/ui/button";
 import { Label } from "@/shared/ui/label";
 import { Mail, Lock } from "lucide-react";
 import { motion } from "framer-motion";
 import { Card, CardContent, CardHeader } from "@/shared/ui/card";
+import { handleLogin } from "../api/handlers";
 
 export const LoginForm = ({ onSuccess }: { onSuccess: () => void }) => {
-  const { register, handleSubmit, formState: { errors, isSubmitting } } = useForm<LoginFormData>({
+  const { register, handleSubmit, formState: { errors, isSubmitting } } = useForm<LoginSchema>({
     resolver: zodResolver(loginSchema),
   });
 
-  const onSubmit = async (data: LoginFormData) => {
+  const onSubmit = async (data: LoginSchema) => {
     try {
-      const response = await fetch('/api/auth/login', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(data)
-      });
-      if (response.ok) onSuccess();
-    } catch (e) { console.error("Submit failed", e); }
+      const { user, session } = await handleLogin(data);
+      if (user) {
+        onSuccess();
+      }
+    } catch (e: any) {
+      console.error("Login failed:", e.message);
+    }
   };
 
   const inputStyles = "bg-white/5 border-white/5 h-12 pl-11 rounded-xl text-white text-sm placeholder:text-slate-600 focus:border-cyan-500/50 focus:ring-0 transition-all";
