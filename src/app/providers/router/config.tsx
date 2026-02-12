@@ -7,6 +7,7 @@ import { HomePage } from "@/pages/home";
 import { DashboardPage } from "@/pages/admin/dashboard";
 import { RegisterPage } from "@/pages/auth/register";
 import { LoginPage } from "@/pages/auth/login";
+import { ProfilePage } from "@/pages/admin/profile";
 
 export const router = createBrowserRouter([
   {
@@ -16,7 +17,7 @@ export const router = createBrowserRouter([
     children: [
       {
         index: true,
-        element: <HomePage/>,
+        element: <HomePage />,
       },
       // Future routes like /profile or /about go here
     ],
@@ -29,6 +30,10 @@ export const router = createBrowserRouter([
       {
         index: true,
         element: <DashboardPage title="Dashboard" />,
+      },
+      {
+        path: "profile",
+        element: <ProfilePage />,
       }
     ],
   },
