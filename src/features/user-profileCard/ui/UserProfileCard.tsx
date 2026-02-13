@@ -41,7 +41,9 @@ export const UserProfileCard = () => (
 
 const DetailRow = ({ icon, label }: { icon: React.ReactNode; label: string }) => (
     <div className="flex items-center gap-3 text-sm text-slate-600">
-        <div className="size-4 text-slate-400">{icon}</div>
+        <div className="size-4 text-slate-400" aria-hidden="true">
+            {icon}
+        </div>
         <span>{label}</span>
     </div>
 );
