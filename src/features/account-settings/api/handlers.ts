@@ -1,9 +1,13 @@
 import type { AccountSettings } from '../model/types';
 
+const ACCOUNT_SETTINGS_NETWORK_DELAY_MS =
+    process.env.NODE_ENV === 'development' ? 400 : 0;
 
 export const getAccountSettings = async (): Promise<AccountSettings> => {
-    // Simulate network delay (400 milliseconds = 0.4 seconds)
-    await new Promise(resolve => setTimeout(resolve, 400));
+    // Optional simulated network delay (development only to avoid slowing tests/production)
+    if (ACCOUNT_SETTINGS_NETWORK_DELAY_MS > 0) {
+        await new Promise(resolve => setTimeout(resolve, ACCOUNT_SETTINGS_NETWORK_DELAY_MS));
+    }
 
     // TODO: Replace with real API call
     // Example: const response = await fetch('/api/settings');
